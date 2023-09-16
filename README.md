@@ -55,3 +55,7 @@ Step 3: Press button 3 (Picture above).
 Step 4: Run the batch file.
 
 :D and enjoy
+
+> FFmpeg text animation is generated with http://ffmpeg.shanewhite.co/ .
+>
+> FFmpeg is the leading multimedia framework, see https://ffmpeg.org/ .
