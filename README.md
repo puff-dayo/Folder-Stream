@@ -22,7 +22,7 @@ Check by running fffmpeg in a ``cmd.exe`` console. You may get something like th
 
 ![图片](https://github.com/puff-dayo/folder-stream/assets/84665734/0ae27b77-5d15-4bc1-b6ac-22660d441392)
 
-2. In version2, I made a new feature. The batch can save (in the same folder with the .bat file) and load last config, making more convenience. If you are not cloning the whole git repo, remember to place a ``simhei.ttf`` in the same folder with the .bat file.
+2. In version2, I made a new feature. The batch can save (in the same folder with the .bat file) and load last config, making more convenience. Download and place a ``NotoSansCJKsc-Regular.ttf`` in the same folder with the .bat file. Here is the download link: https://github.com/life888888/cjk-fonts-ttf/releases/download/v0.1.0/NotoSansCJKsc-Regular.ttf .
 
 3. Follow the directions print out on the ``cmd.exe`` console. Type some information it requires. Press Enter. And it will run! (it works on my machine)
 
