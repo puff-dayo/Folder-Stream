@@ -4,18 +4,58 @@ SETLOCAL enableDelayedExpansion
 echo Welcome to
 echo.
 echo [32m    Folder Stream Tool[0m
-echo [33m        Version 1 by puff-dayo [0m
+echo [33m        Version 2 by puff-dayo [0m
 echo.
 
-set /p pathInput=Enter the path and press Enter (e.g. E:\Livestream\): 
-set /p fileType=Enter the file type (e.g. mp4): 
-set /p streamLink=Enter the stream link (e.g. rtmps://link): 
+rem Check if folder-stream.data exists 
+if exist "folder-stream-user-data.txt" (
+    echo Data file exists.
+    set /p loadConfig="Load last configuration (y/n)?"
+    if /i "!loadConfig!"=="y" (
+      set lineFlag=0
+      for /f "delims=*" %%i in (folder-stream-user-data.txt) do (
+      set /a lineFlag+=1
+      if !lineFlag!==1 (
+        set pathInput=%%i
+        echo Path: !pathInput!
+          )
+      if !lineFlag!==2 (
+        set fileType=%%i
+        echo File type: !fileType!
+          )
+      if !lineFlag!==3 (
+        set streamLink=%%i
+        echo Stream server URL: !streamLink!
+          )
+      )
+    )
+)
+echo.
+rem Only prompt for input if not using the last configuration
+if not defined pathInput del /f /q folder-stream-user-data.txt
+if not defined pathInput set /p pathInput=Enter the path and press Enter (e.g. E:\Livestream\): 
+if not defined fileType set /p fileType=Enter the file type (e.g. mp4): 
+if not defined streamLink set /p streamLink=Enter the stream link (e.g. rtmps://link): 
 
-:: Ensure path ends with a backslash
+REM Save user input to folder-stream.data
+(
+    echo %pathInput%
+    echo %fileType%
+    echo %streamLink%
+) > folder-stream-user-data.txt
+
+rem Ensure path ends with a backslash
 if not "%pathInput:~-1%"=="\" set pathInput=%pathInput%\
 
-:: Count the total number of files of the specified type
-for /f %%A in ('dir /b "%pathInput%*.%fileType%" ^| find /v /c ""') do set totalCount=%%A
+rem Check if the path is valid
+if not exist "%pathInput%" (
+    echo The path %pathInput% does not exist!
+    pause
+    exit
+)
+
+rem Count the total number of files of the specified type
+for /f %%A in ('dir /b "%pathInput%*.%fileType%" 2^>nul ^| find /v /c ""') do set totalCount=%%A
 
 :loop
 set playedCount=0
@@ -23,8 +63,9 @@ set playedCount=0
 for %%f in ("%pathInput%*.%fileType%") do (
     set /a playedCount+=1
     set /a remainingCount=totalCount-playedCount
-    echo %DATE% %TIME% - Streaming file: %%f File !playedCount! of !totalCount!, !remainingCount! remaining >> "%pathInput%stream-log.txt"
+    echo %DATE% %TIME% - Streaming file: %%f File !playedCount! of !totalCount!, !remainingCount! remaining >> "%pathInput%folder-stream-log.log"
     
-    ffmpeg -re -i "%%f" -c:v libx264 -preset veryfast -b:v 1000k -maxrate 1500k -bufsize 7000k -pix_fmt yuv420p -g 50 -c:a aac -b:a 160k -ac 2 -ar 44100 -f flv "%streamLink%"
+    ffmpeg -re -i "%%f" -c:v libx264 -preset veryfast -b:v 1500k -maxrate 1700k -bufsize 7000k -pix_fmt yuv420p -g 50 -c:a aac -b:a 160k -ac 2 -ar 44100 -vf "drawtext=text='NOW PLAYING %%~nf.%fileType%':fontfile=simhei.ttf:fontsize=26:fontcolor=white:borderw=2:bordercolor=black:box=1:boxcolor=black@0.5:x=10:y=10:alpha=0.6" -f flv "%streamLink%"
+
 )
 goto loop
