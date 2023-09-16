@@ -6,13 +6,17 @@ Tested on Telegram PC (Windows11 21H2, 4.8.10 x64) live stream. **Very good audi
 
 ###  New Features
 
-**Version 1: 09/16/23**
-Basic functionality
-
-**Version 2: 09/17/23**
-Add save&load last config
-Add fade-in&out animation of now-playing overlay and a switch to turn it on/off
-Fix bugs
+> **Version 1: 09/16/23**
+>
+> Basic functionality
+>
+> **Version 2: 09/17/23**
+>
+>Add save&load last config
+>
+>Add fade-in&out animation of now-playing overlay and a switch to turn it on/off
+>
+>Fix bugs
 
 ## Usage Example
 
@@ -59,3 +63,5 @@ Step 4: Run the batch file.
 > FFmpeg text animation is generated with http://ffmpeg.shanewhite.co/ .
 >
 > FFmpeg is the leading multimedia framework, see https://ffmpeg.org/ .
+> 
+> Source Han Sans is a sans-serif gothic typeface family created by Adobe and Google. It is also released by Google under the Noto fonts project as Noto Sans CJK, see https://github.com/adobe-fonts/source-han-sans .
