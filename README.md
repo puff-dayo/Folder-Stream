@@ -2,7 +2,7 @@
 
 An interactive batch file that uses ffmpeg on Windows to perform rtmps streaming of files with a specified extension in a folder.
 
-Tested on a Telegram PC app (Windows11 21H2 ) live stream.** Very good audio quality** compared to in-app streaming. 
+Tested on Telegram PC (Windows11 21H2, 4.8.10 x64) live stream. **Very good audio quality** compared to in-app streaming. 
 
 ## Usage Example
 
