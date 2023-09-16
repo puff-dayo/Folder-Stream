@@ -27,6 +27,10 @@ if exist "folder-stream-user-data.txt" (
         set streamLink=%%i
         echo Stream server URL: !streamLink!
           )
+      if !lineFlag!==4 (
+        set overlaySwitch=%%i
+        echo Now-playing overlay: !overlaySwitch!
+          )
       )
     )
 )
@@ -36,12 +40,14 @@ if not defined pathInput del /f /q folder-stream-user-data.txt
 if not defined pathInput set /p pathInput=Enter the path and press Enter (e.g. E:\Livestream\): 
 if not defined fileType set /p fileType=Enter the file type (e.g. mp4): 
 if not defined streamLink set /p streamLink=Enter the stream link (e.g. rtmps://link): 
+if not defined overlaySwitch set /p overlaySwitch="Do you want to enable the now-playing overlay? (y/n): "
 
 REM Save user input to folder-stream.data
 (
     echo %pathInput%
     echo %fileType%
     echo %streamLink%
+    echo %overlaySwitch%
 ) > folder-stream-user-data.txt
 
 rem Ensure path ends with a backslash
@@ -65,7 +71,11 @@ for %%f in ("%pathInput%*.%fileType%") do (
     set /a remainingCount=totalCount-playedCount
     echo %DATE% %TIME% - Streaming file: %%f File !playedCount! of !totalCount!, !remainingCount! remaining >> "%pathInput%folder-stream-log.log"
     
-    ffmpeg -re -i "%%f" -c:v libx264 -preset veryfast -b:v 1500k -maxrate 1700k -bufsize 7000k -pix_fmt yuv420p -g 50 -c:a aac -b:a 160k -ac 2 -ar 44100 -vf "drawtext=text='NOW PLAYING %%~nf.%fileType%':fontfile=simhei.ttf:fontsize=26:fontcolor=white:borderw=2:bordercolor=black:box=1:boxcolor=black@0.5:x=10:y=10:alpha=0.6" -f flv "%streamLink%"
+    if /i "%overlaySwitch%"=="y" (
+      ffmpeg -re -i "%%f" -c:v libx264 -preset veryfast -b:v 1500k -maxrate 1700k -bufsize 7000k -pix_fmt yuv420p -g 50 -c:a aac -b:a 160k -ac 2 -ar 44100 -filter_complex "drawtext=fontfile=simhei.ttf:text='NOW PLAYING %%~nf.%fileType%':fontsize=30:fontcolor=ffffff:alpha='if(lt(t,1),0,if(lt(t,11),(t-1)/10,if(lt(t,31),1,if(lt(t,40),(9-(t-31))/9,0))))':x=10:y=10" -f flv "%streamLink%"
+    ) else (
+      ffmpeg -re -i "%%f" -c:v libx264 -preset veryfast -b:v 1500k -maxrate 1700k -bufsize 7000k -pix_fmt yuv420p -g 50 -c:a aac -b:a 160k -ac 2 -ar 44100 -f flv "%streamLink%"
+    )
 
 )
 goto loop
