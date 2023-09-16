@@ -72,7 +72,7 @@ for %%f in ("%pathInput%*.%fileType%") do (
     echo %DATE% %TIME% - Streaming file: %%f File !playedCount! of !totalCount!, !remainingCount! remaining >> "%pathInput%folder-stream-log.log"
     
     if /i "%overlaySwitch%"=="y" (
-      ffmpeg -re -i "%%f" -c:v libx264 -preset veryfast -b:v 1500k -maxrate 1700k -bufsize 7000k -pix_fmt yuv420p -g 50 -c:a aac -b:a 160k -ac 2 -ar 44100 -filter_complex "drawtext=fontfile=simhei.ttf:text='NOW PLAYING %%~nf.%fileType%':fontsize=30:fontcolor=ffffff:alpha='if(lt(t,1),0,if(lt(t,11),(t-1)/10,if(lt(t,31),1,if(lt(t,40),(9-(t-31))/9,0))))':x=10:y=10" -f flv "%streamLink%"
+      ffmpeg -re -i "%%f" -c:v libx264 -preset veryfast -b:v 1500k -maxrate 1700k -bufsize 7000k -pix_fmt yuv420p -g 50 -c:a aac -b:a 160k -ac 2 -ar 44100 -filter_complex "drawtext=fontfile=NotoSansCJKsc-Regular.ttf:text='NOW PLAYING %%~nf.%fileType%':fontsize=30:fontcolor=ffffff:alpha='if(lt(t,1),0,if(lt(t,11),(t-1)/10,if(lt(t,31),1,if(lt(t,40),(9-(t-31))/9,0))))':x=10:y=10" -f flv "%streamLink%"
     ) else (
       ffmpeg -re -i "%%f" -c:v libx264 -preset veryfast -b:v 1500k -maxrate 1700k -bufsize 7000k -pix_fmt yuv420p -g 50 -c:a aac -b:a 160k -ac 2 -ar 44100 -f flv "%streamLink%"
     )
