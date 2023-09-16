@@ -10,19 +10,11 @@ Tested on Telegram PC (Windows11 21H2, 4.8.10 x64) live stream. **Very good audi
 
 ![图片](https://github.com/puff-dayo/folder-stream/assets/84665734/394b7867-0597-424d-a223-0fff928526e1)
 
-2. Pace the batch file within your folder filled with video files going to stream.
-
-  - folder
-    - folder-stream.bat
-    - a.mp4
-    - another.mp4
-    - ....
-
-3. Follow the directions print out on the ``cmd.exe`` console. Type some information it requires. Press Enter. And it will run! (it works on my machine)
+2. Follow the directions print out on the ``cmd.exe`` console. Type some information it requires. Press Enter. And it will run! (it works on my machine)
 
 ![图片](https://github.com/puff-dayo/folder-stream/assets/84665734/a586c893-41da-4c73-a7ab-38614e870726)
 
-4. (if you want to) Configure the ffmpeg params.
+3. (if you want to) Configure the ffmpeg params.
 
 ## How to Stream (Take Telegram as an example)
 
