@@ -4,11 +4,15 @@ An interactive batch file that uses ffmpeg on Windows to perform rtmps streaming
 
 Tested on Telegram PC (Windows11 21H2, 4.8.10 x64) live stream. **Very good audio quality** compared to in-app streaming. 
 
-### Updates
+###  New Features
 
-Version 1: 09/16/23
+**Version 1: 09/16/23**
+Basic functionality
 
-Version 2: 09/17/23
+**Version 2: 09/17/23**
+Add save&load last config
+Add fade-in&out animation of now-playing overlay and a switch to turn it on/off
+Fix bugs
 
 ## Usage Example
 
