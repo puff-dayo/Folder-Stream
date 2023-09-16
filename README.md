@@ -1,20 +1,40 @@
 # Folder Stream
 
-An interactive batch file that uses ffmpeg on Windows to perform rtmps streaming of files with a specified extension in a folder.
+An interactive batch file that uses ffmpeg on Windows to perform rtmps streaming of files with a specified extension in a folder. And it adds an overlay layer to the video to show the current playing file name.
 
 Tested on Telegram PC (Windows11 21H2, 4.8.10 x64) live stream. **Very good audio quality** compared to in-app streaming. 
 
+### Updates
+
+Version 1: 09/16/23
+
+Version 2: 09/17/23
+
 ## Usage Example
 
-1. Make sure you installed ``ffmpeg`` on your Windows machine and added it to PATH. Check by running fffmpeg in a ``cmd.exe`` console. You may get something like this:
+1. Make sure you installed ``ffmpeg-full`` on your Windows machine and added it to PATH. It should be "ffmpeg-**full**".
 
-![图片](https://github.com/puff-dayo/folder-stream/assets/84665734/394b7867-0597-424d-a223-0fff928526e1)
+Check by running fffmpeg in a ``cmd.exe`` console. You may get something like this:
 
-2. Follow the directions print out on the ``cmd.exe`` console. Type some information it requires. Press Enter. And it will run! (it works on my machine)
+![图片](https://github.com/puff-dayo/folder-stream/assets/84665734/0ae27b77-5d15-4bc1-b6ac-22660d441392)
+
+2. In version2, I made a new feature. The batch can save (in the same folder with the .bat file) and load last config, making more convenience. If you are not cloning the whole git repo, remember to place a ``simhei.ttf`` in the same folder with the .bat file.
+
+3. Follow the directions print out on the ``cmd.exe`` console. Type some information it requires. Press Enter. And it will run! (it works on my machine)
 
 ![图片](https://github.com/puff-dayo/folder-stream/assets/84665734/a586c893-41da-4c73-a7ab-38614e870726)
 
-3. (if you want to) Configure the ffmpeg params.
+4. (if you want to) Configure the ffmpeg params.
+
+## How to Install ffmpeg-full (Briefly)
+
+1. Goto https://www.gyan.dev/ffmpeg/builds/ , and download this:
+
+![图片](https://github.com/puff-dayo/folder-stream/assets/84665734/e70147ec-866a-43ba-96cd-f2b517a8489a)
+
+2. Unzip it somewhere safe (you wont delete it by accident), and add the directory to PATH.
+
+Step by step instruction can be found on wikiHow: https://www.wikihow.com/Install-FFmpeg-on-Windows
 
 ## How to Stream (Take Telegram as an example)
 
